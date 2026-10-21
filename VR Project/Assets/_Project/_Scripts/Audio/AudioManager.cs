@@ -90,7 +90,6 @@ public class AudioManager : MonoBehaviour
     private void DebugMessage(string message)
     {
         Debug.Log($"[{gameObject.name}] AudioController: Sound ({message}) is not found.");
-      
     }
     
     private void OnValidate()

@@ -49,7 +49,7 @@ public class PhonePhotoViewer : App
         SetTexture(album.allPhotos[_currentIndex]);
 
         UpdateButtons();
-        OnPhoneAction();
+        OnPhoneAction("Album Up");
     }
     
     public void Down()
@@ -60,7 +60,7 @@ public class PhonePhotoViewer : App
         SetTexture(album.allPhotos[_currentIndex]);
         
         UpdateButtons();
-        OnPhoneAction();
+        OnPhoneAction("Album Down");
     }
 
     public void Delete()
@@ -93,7 +93,7 @@ public class PhonePhotoViewer : App
         album.DeletePhoto(currentPhoto);
         
         UpdateButtons();
-        OnPhoneAction();
+        OnPhoneAction("Delete Photo");
     }
 
     private void SetTexture(Photo photo)

@@ -32,5 +32,5 @@ public abstract class App : MonoBehaviour
 
     public abstract void Exit(float transitionDuration = 0);
 
-    protected void OnPhoneAction() => _phone.OnPhoneAction();
+    protected void OnPhoneAction(string action) => _phone.PhoneAction(action);
 }

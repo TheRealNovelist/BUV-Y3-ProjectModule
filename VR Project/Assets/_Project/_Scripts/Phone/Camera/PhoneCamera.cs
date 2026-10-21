@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,9 @@ public class PhoneCamera : App
     [Header("Warning")] 
     [SerializeField] private UIAnimation warning;
     [SerializeField] private float warningTime;
+
+    [Header("Text")] 
+    [SerializeField] private TMP_Text modeButtonText;
     
     [Header("Fade Settings")]
     [SerializeField] private Graphic screen;
@@ -34,6 +38,7 @@ public class PhoneCamera : App
         
         cameraOnPhone.gameObject.SetActive(gameObject.activeInHierarchy);
         SwitchMode(Level.Present);
+        modeButtonText.text = $"Current: {_mode}";
     }
 
     private void Start()
@@ -65,6 +70,8 @@ public class PhoneCamera : App
                 _mode = Level.Future;
                 break;
         }
+
+        modeButtonText.text = $"Current: {_mode}";
     }
 
     
@@ -82,7 +89,7 @@ public class PhoneCamera : App
                 break;
         }
         
-        OnPhoneAction();
+        OnPhoneAction("Switching Mode");
     }
 
     public void TakePicture()
@@ -116,7 +123,7 @@ public class PhoneCamera : App
             sequence.Play();
         }
         
-        OnPhoneAction();
+        OnPhoneAction("Take Picture");
     }
     
     public void SetBlockerActive(bool isActive)

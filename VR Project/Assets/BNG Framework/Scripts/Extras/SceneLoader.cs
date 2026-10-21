@@ -49,6 +49,11 @@ namespace BNG {
 
             SceneManager.LoadScene(_loadSceneName, loadSceneMode);
         }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }
 

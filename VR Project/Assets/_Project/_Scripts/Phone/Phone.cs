@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 [SelectionBase]
 public class Phone : MonoBehaviour
 {
     public static event Action OnPhoneTaken;
     public static event Action OnPhoneReturn;
+    public static event Action<string> OnPhoneAction;
+    
     public static bool IsPhoneInHolder { get; private set; } = true;
     public static bool IsPhoneOn { get; private set; }
     
@@ -54,8 +57,8 @@ public class Phone : MonoBehaviour
     {
         IsPhoneInHolder = false;
         OnPhoneTaken?.Invoke();
-        
-        OnPhoneAction();
+
+        PhoneAction("Take Phone");
     }
     
     [Button]
@@ -63,8 +66,8 @@ public class Phone : MonoBehaviour
     {
         IsPhoneInHolder = true;
         OnPhoneReturn?.Invoke();
-        
-        OnPhoneAction();
+
+        PhoneAction("Return Phone");
     }
 
     public void TurnOn()
@@ -107,7 +110,7 @@ public class Phone : MonoBehaviour
         
         activePages.Push(app);
         
-        OnPhoneAction();
+        PhoneAction("Enter App");
     }
     
     public void ExitApp()
@@ -121,7 +124,7 @@ public class Phone : MonoBehaviour
             nextTopPage.Enter(transitionDuration);
         }
         
-        OnPhoneAction();
+        PhoneAction("Exit App");
     }
 
     public void ExitAppWithButton()
@@ -130,9 +133,10 @@ public class Phone : MonoBehaviour
             ExitApp();
     }
 
-    public void OnPhoneAction()
+    public void PhoneAction(string action)
     {
         //Reset idleTime to 0 as action has been called
         _idleTime = 0;
+        OnPhoneAction?.Invoke(action);
     }
 }

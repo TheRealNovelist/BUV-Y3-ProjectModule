@@ -17,6 +17,6 @@ public class PhoneAppHelper : MonoBehaviour
     public void StartApp()
     {
         phone.EnterApp(appToGo);
-        phone.OnPhoneAction();
+        phone.PhoneAction("Unlock Screen");
     }
 }

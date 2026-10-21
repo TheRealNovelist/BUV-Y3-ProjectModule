@@ -9,7 +9,8 @@ using UnityEngine.Serialization;
 public class Conditional : SerializedMonoBehaviour
 {
     public bool isTrue;
-    
+
+    [SerializeField] private bool stayTrue;
     [Header("Events")]
     [FormerlySerializedAs("OnTrue")] public UnityEvent OnSuccess;
     [FormerlySerializedAs("OnFalse")] public UnityEvent OnFailed;
@@ -22,6 +23,7 @@ public class Conditional : SerializedMonoBehaviour
 
     public void Invoke(bool toTrue)
     {
+        if (stayTrue && isTrue) return;
         isTrue = toTrue;
         if (toTrue)
         {
